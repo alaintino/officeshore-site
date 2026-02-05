@@ -1470,7 +1470,6 @@
                     <input type="hidden" name="access_key" value="feb3ae12-00df-472b-8137-0811433880f7">
                     <input type="hidden" name="subject" value="Nouveau message depuis officeshore.com">
                     <input type="hidden" name="from_name" value="Site Officeshore">
-                    <input type="hidden" name="redirect" value="https://officeshore.com?success=true">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nom">Nom *</label>
@@ -1608,11 +1607,36 @@
             });
         });
 
-        // Check for success message after form submission
-        if (window.location.search.includes('success=true')) {
-            alert('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 24-48h.');
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
+        // Form submission with popup
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const submitBtn = form.querySelector('.form-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.disabled = true;
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 24-48h.');
+                    form.reset();
+                } else {
+                    alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                }
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
