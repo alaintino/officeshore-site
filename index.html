@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- v3.2 - compact muted technologies -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officeshore — Enlight your Shadow IT</title>
+    <meta name="description" content="Maintenance, évolution et structuration de vos développements Excel/VBA et Access. 20 ans d'expérience en environnements exigeants.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --blue-dark: #1E3A5F;
+            --blue-medium: #3D5A80;
+            --blue-light: #E8EEF4;
+            --gold: #FFB800;
+            --gold-light: #FFD700;
+            --gold-gradient: linear-gradient(135deg, #FFD700 0%, #FF9500 100%);
+            --gray-dark: #374151;
+            --gray-medium: #6B7280;
+            --gray-light: #F3F4F6;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 2px rgba(30, 58, 95, 0.05);
+            --shadow-md: 0 4px 12px rgba(30, 58, 95, 0.1);
+            --shadow-lg: 0 12px 40px rgba(30, 58, 95, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            color: var(--gray-dark);
+            line-height: 1.6;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--blue-dark);
+            line-height: 1.2;
+        }
+
+        h1 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 700; }
+        h2 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
+        h3 { font-size: clamp(0.85rem, 1.5vw, 1rem); font-weight: 600; }
+
+        p { color: var(--gray-medium); }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(30, 58, 95, 0.08);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 48px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--blue-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--blue-dark);
+            color: var(--white) !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--blue-medium);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--blue-dark);
+            margin: 6px 0;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: auto;
+            max-height: none;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--blue-light) 0%, var(--white) 50%, #FFF9E6 100%);
+            overflow: hidden;
+            padding-top: 80px;
+            padding-bottom: 30px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(255, 184, 0, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .hero-text {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: var(--blue-dark);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            margin-bottom: 10px;
+        }
+
+        .hero h1 .highlight {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            margin-bottom: 16px;
+            max-width: 100%;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--blue-dark);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-medium);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--blue-dark);
+            border: 2px solid var(--blue-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue-dark);
+            color: var(--white);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 0.8s ease-out 0.2s both;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-illustration {
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Floating elements animation */
+        .float-element {
+            position: absolute;
+            background: var(--white);
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            font-size: 0.65rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .float-element.excel {
+            top: 0%;
+            right: 5%;
+            animation-delay: 0s;
+        }
+
+        .float-element.access {
+            top: 50%;
+            left: 0%;
+            animation-delay: 1s;
+        }
+
+        .float-element.vba {
+            top: 30%;
+            right: 0%;
+            animation-delay: 2s;
+        }
+
+        .float-element.office365 {
+            top: 5%;
+            left: 0%;
+            animation-delay: 1.5s;
+        }
+
+        .float-element.python {
+            top: 65%;
+            right: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .float-element.sqlserver {
+            top: 70%;
+            left: 10%;
+            animation-delay: 2.5s;
+        }
+
+        .float-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.5rem;
+            color: white;
+        }
+
+        .float-icon.excel { background: #107C41; }
+        .float-icon.access { background: #A4373A; }
+        .float-icon.vba { background: #185ABD; }
+        .float-icon.office365 { background: #D83B01; }
+        .float-icon.python { background: #3776AB; }
+        .float-icon.sqlserver { background: #CC2927; }
+
+        /* Technologies Section */
+        .technologies {
+            background: var(--white);
+        }
+
+        .technologies h2 {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .technologies-intro {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto 24px;
+            font-size: 0.8rem;
+        }
+
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .tech-category {
+            background: var(--gray-light);
+            border-radius: 10px;
+            padding: 16px;
+            transition: var(--transition);
+        }
+
+        .tech-category:hover {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tech-category-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tech-category-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            background: var(--blue-dark);
+            color: var(--white);
+        }
+
+        .tech-category h3 {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--gray-dark);
+            background: #e5e7eb;
+            border: 1px solid #d1d5db;
+            transition: var(--transition);
+        }
+
+        .tech-badge:hover {
+            background: #d1d5db;
+        }
+
+        /* Problems Section */
+        .problems {
+            background: var(--blue-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problems::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .problems h2 {
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            transition: var(--transition);
+        }
+
+        .problem-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .problem-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--gold-gradient);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+        }
+
+        .problem-card h3 {
+            color: var(--white);
+            margin-bottom: 6px;
+            font-size: 0.7rem;
+        }
+
+        .problem-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.6rem;
+            line-height: 1.3;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--gray-light);
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .services-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px 32px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--blue-light);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .service-tagline {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .service-list {
+            list-style: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .service-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .service-list li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* Why Us Section */
+        .why-us {
+            background: var(--white);
+        }
+
+        .why-us-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .why-us-header h2 {
+            margin-bottom: 8px;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 16px 12px;
+        }
+
+        .why-card p {
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .why-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 1rem;
+            box-shadow: 0 4px 16px rgba(255, 184, 0, 0.3);
+        }
+
+        .why-card h3 {
+            margin-bottom: 8px;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            background: var(--blue-dark);
+            border-radius: 12px;
+            padding: 24px 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.7rem;
+        }
+
+        /* Clients Section */
+        .clients {
+            background: var(--gray-light);
+            padding: 60px 0;
+        }
+
+        .clients h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--gray-medium);
+            font-weight: 500;
+        }
+
+        .clients-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px 60px;
+            opacity: 0.6;
+        }
+
+        .client-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--blue-dark);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--blue-light) 0%, var(--white) 100%);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 24px;
+        }
+
+        .contact-info > p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .contact-details .icon {
+            width: 48px;
+            height: 48px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+            font-size: 1.25rem;
+        }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--blue-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--blue-dark);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            background: var(--blue-medium);
+        }
+
+        .form-note {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--blue-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 16px;
+            max-width: 300px;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--gold);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            padding: 6px 0;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-contact p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--white);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .why-us-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 24px;
+                gap: 16px;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 40px 24px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 32px 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .float-element {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="#" aria-label="Officeshore">
+                <svg class="logo" viewBox="0 0 380 80" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="glowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFD700"/>
+                            <stop offset="100%" style="stop-color:#FF9500"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(5, 2)">
+                        <line x1="38" y1="2" x2="38" y2="10" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="16" y1="12" x2="22" y2="18" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="60" y1="12" x2="54" y2="18" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="8" y1="36" x2="16" y2="36" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="68" y1="36" x2="60" y2="36" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="38" cy="38" r="22" fill="none" stroke="#1E3A5F" stroke-width="2"/>
+                        <circle cx="38" cy="38" r="9" fill="url(#glowGradient)"/>
+                        <path d="M29,58 L29,68 Q29,72 32,72 L44,72 Q47,72 47,68 L47,58 Z" fill="#1E3A5F"/>
+                        <line x1="29" y1="62" x2="47" y2="62" stroke="#3D5A80" stroke-width="1.5"/>
+                        <line x1="29" y1="66" x2="47" y2="66" stroke="#3D5A80" stroke-width="1.5"/>
+                    </g>
+                    <text x="90" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="600" fill="#1E3A5F" letter-spacing="-1">
+                        <tspan fill="#FFB800">O</tspan>fficeshore
+                    </text>
+                </svg>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#technologies">Technologies</a></li>
+                <li><a href="#pourquoi">Pourquoi nous</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">Shadow IT Management</span>
+                    <h1>Enlight your <span class="highlight">Shadow IT</span></h1>
+                    <p class="hero-subtitle">Vos macros Excel et bases Access font tourner votre activité. Nous les maintenons, les sécurisons et les faisons évoluer.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            Demander un audit gratuit
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <a href="#services" class="btn btn-secondary">Découvrir nos services</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="float-element excel">
+                        <div class="float-icon excel">XLS</div>
+                        <span>Excel / VBA</span>
+                    </div>
+                    <div class="float-element access">
+                        <div class="float-icon access">ACC</div>
+                        <span>Access</span>
+                    </div>
+                    <div class="float-element vba">
+                        <div class="float-icon vba">VBA</div>
+                        <span>Macros</span>
+                    </div>
+                    <div class="float-element office365">
+                        <div class="float-icon office365">365</div>
+                        <span>Office 365</span>
+                    </div>
+                    <div class="float-element python">
+                        <div class="float-icon python">PY</div>
+                        <span>Python</span>
+                    </div>
+                    <div class="float-element sqlserver">
+                        <div class="float-icon sqlserver">SQL</div>
+                        <span>SQL Server</span>
+                    </div>
+                    <svg class="hero-illustration" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background circle -->
+                        <circle cx="200" cy="200" r="180" fill="#E8EEF4" opacity="0.5"/>
+                        <!-- Light bulb large -->
+                        <g transform="translate(100, 80)">
+                            <!-- Rays -->
+                            <line x1="100" y1="10" x2="100" y2="40" stroke="#FFD700" stroke-width="6" stroke-linecap="round"/>
+                            <line x1="30" y1="50" x2="50" y2="70" stroke="#FFD700" stroke-width="6" stroke-linecap="round"/>
+                            <line x1="170" y1="50" x2="150" y2="70" stroke="#FFD700" stroke-width="6" stroke-linecap="round"/>
+                            <line x1="10" y1="130" x2="40" y2="130" stroke="#FFD700" stroke-width="6" stroke-linecap="round"/>
+                            <line x1="190" y1="130" x2="160" y2="130" stroke="#FFD700" stroke-width="6" stroke-linecap="round"/>
+                            <!-- Bulb -->
+                            <circle cx="100" cy="130" r="70" fill="none" stroke="#1E3A5F" stroke-width="8"/>
+                            <!-- Filament O -->
+                            <circle cx="100" cy="130" r="30" fill="url(#heroGlow)"/>
+                            <!-- Base -->
+                            <rect x="70" y="198" width="60" height="35" rx="8" fill="#1E3A5F"/>
+                            <line x1="70" y1="210" x2="130" y2="210" stroke="#3D5A80" stroke-width="4"/>
+                            <line x1="70" y1="222" x2="130" y2="222" stroke="#3D5A80" stroke-width="4"/>
+                            <ellipse cx="100" cy="245" rx="20" ry="10" fill="#1E3A5F"/>
+                        </g>
+                        <defs>
+                            <linearGradient id="heroGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFD700"/>
+                                <stop offset="100%" style="stop-color:#FF9500"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="problems" id="problemes">
+        <div class="container">
+            <h2 class="reveal">Votre Shadow IT vous échappe ?</h2>
+            <div class="problems-grid">
+                <div class="problem-card reveal">
+                    <div class="problem-icon">👻</div>
+                    <h3>Le développeur fantôme</h3>
+                    <p>La macro critique a été développée par un collaborateur... parti depuis 3 ans. Personne ne sait comment elle fonctionne.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-icon">⚠️</div>
+                    <h3>Le fichier intouchable</h3>
+                    <p>Personne n'ose toucher au fichier Excel qui produit les reportings mensuels. Une modification = risque majeur.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-icon">🚫</div>
+                    <h3>La DSI débordée</h3>
+                    <p>Votre DSI ne veut pas (ou ne peut pas) maintenir vos outils Access. Ce n'est pas leur priorité.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-icon">🔥</div>
+                    <h3>L'urgence du lundi matin</h3>
+                    <p>Un bug bloque votre production et vous n'avez personne pour intervenir. Le stress monte.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-icon">🔄</div>
+                    <h3>La migration redoutée</h3>
+                    <p>Une migration Office approche et vous craignez la casse. Vos macros survivront-elles ?</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="problem-icon">📊</div>
+                    <h3>La jungle des fichiers</h3>
+                    <p>Des dizaines de macros et fichiers Excel font le même travail différemment. Impossible de s'y retrouver.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="reveal">Nos services</h2>
+            <p class="services-intro reveal">Que vous ayez besoin d'un support ponctuel ou d'une prise en charge complète, nous avons une solution adaptée à votre situation.</p>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">🔧</div>
+                    <h3>Exploitation & Maintenance</h3>
+                    <p class="service-tagline">Vos outils tournent, on s'en occupe</p>
+                    <p>Nous prenons en charge la gestion quotidienne de vos développements : intégration de données, mises à jour, production de rapports, corrections et évolutions.</p>
+                    <ul class="service-list">
+                        <li>Rapports d'exploitation périodiques</li>
+                        <li>Corrections et évolutions incluses</li>
+                        <li>Point de suivi mensuel</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">🚨</div>
+                    <h3>AlloMacro</h3>
+                    <p class="service-tagline">Intervention rapide sur vos bugs</p>
+                    <p>Votre macro plante un lundi matin ? Nous intervenons rapidement pour diagnostiquer et résoudre les bugs qui bloquent votre activité.</p>
+                    <ul class="service-list">
+                        <li>Diagnostic sous 24-48h</li>
+                        <li>Intervention à distance ou sur site</li>
+                        <li>Facturation transparente</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Création & Structuration</h3>
+                    <p class="service-tagline">Des outils sur mesure, bien organisés</p>
+                    <p>Besoin d'un outil métier ou de remettre de l'ordre dans vos macros existantes ? Nous créons, structurons et documentons vos développements.</p>
+                    <ul class="service-list">
+                        <li>Outils de pricing et calcul</li>
+                        <li>Bases de suivi et reporting</li>
+                        <li>Automatisation de process</li>
+                        <li>Cartographie de l'existant</li>
+                        <li>Prototype fonctionnel</li>
+                        <li>Documentation technique</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">🔄</div>
+                    <h3>Migration Office</h3>
+                    <p class="service-tagline">Changement de version sans casse</p>
+                    <p>Une migration Office peut casser vos macros. Nous auditons vos développements et corrigeons les incompatibilités avant ou après migration.</p>
+                    <ul class="service-list">
+                        <li>Audit de compatibilité</li>
+                        <li>Plan de remédiation</li>
+                        <li>Tests post-migration</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">🎓</div>
+                    <h3>Formation</h3>
+                    <p class="service-tagline">Montez en compétences</p>
+                    <p>Nous formons vos collaborateurs à une utilisation avancée d'Excel (TCD, VBA) et Access (SQL, formulaires). Formations adaptées à votre contexte.</p>
+                    <ul class="service-list">
+                        <li>Intra-entreprise</li>
+                        <li>Sur vos propres fichiers</li>
+                        <li>Individuel ou groupe</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal">
+                    <div class="service-icon">🌐</div>
+                    <h3>Trajectoire Web</h3>
+                    <p class="service-tagline">Vers des applications modernes</p>
+                    <p>Vos outils Excel/Access atteignent leurs limites ? Nous les migrons vers des applications web (Python/Django), hébergées sur le cloud.</p>
+                    <ul class="service-list">
+                        <li>Analyse fonctionnelle</li>
+                        <li>Développement itératif</li>
+                        <li>Déploiement cloud</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="technologies" id="technologies">
+        <div class="container">
+            <h2 class="reveal">Nos technologies</h2>
+            <p class="technologies-intro reveal">Un socle technique large pour couvrir l'ensemble de vos besoins, du poste de travail au cloud.</p>
+
+            <div class="tech-categories">
+                <!-- Microsoft Office -->
+                <div class="tech-category reveal">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">📊</div>
+                        <h3>Microsoft Office</h3>
+                    </div>
+                    <div class="tech-badges">
+                        <span class="tech-badge excel">Excel</span>
+                        <span class="tech-badge vba">VBA</span>
+                        <span class="tech-badge access-app">Access</span>
+                        <span class="tech-badge office365">Office 365</span>
+                        <span class="tech-badge powerpoint">PowerPoint</span>
+                        <span class="tech-badge word">Word</span>
+                    </div>
+                </div>
+
+                <!-- Bases de données -->
+                <div class="tech-category reveal">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">🗄️</div>
+                        <h3>Bases de données</h3>
+                    </div>
+                    <div class="tech-badges">
+                        <span class="tech-badge sqlserver">SQL Server</span>
+                        <span class="tech-badge oracle">Oracle</span>
+                        <span class="tech-badge accessdb">Access DB</span>
+                        <span class="tech-badge postgresql">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <!-- Langages & Scripting -->
+                <div class="tech-category reveal">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">💻</div>
+                        <h3>Langages & Scripting</h3>
+                    </div>
+                    <div class="tech-badges">
+                        <span class="tech-badge python">Python</span>
+                        <span class="tech-badge django">Django</span>
+                        <span class="tech-badge vba-lang">VBA</span>
+                        <span class="tech-badge powershell">PowerShell</span>
+                    </div>
+                </div>
+
+                <!-- BI & Reporting -->
+                <div class="tech-category reveal">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">📈</div>
+                        <h3>BI & Reporting</h3>
+                    </div>
+                    <div class="tech-badges">
+                        <span class="tech-badge powerbi">Power BI</span>
+                        <span class="tech-badge powerquery">Power Query</span>
+                        <span class="tech-badge tableau">Tableau</span>
+                        <span class="tech-badge bo">Business Objects</span>
+                    </div>
+                </div>
+
+                <!-- Automatisation -->
+                <div class="tech-category reveal">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">⚡</div>
+                        <h3>Automatisation</h3>
+                    </div>
+                    <div class="tech-badges">
+                        <span class="tech-badge uipath">UiPath</span>
+                        <span class="tech-badge ssis">SSIS</span>
+                        <span class="tech-badge ssas">SSAS</span>
+                        <span class="tech-badge powerautomate">Power Automate</span>
+                    </div>
+                </div>
+
+                <!-- Cloud & ERP -->
+                <div class="tech-category reveal">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">☁️</div>
+                        <h3>Cloud & ERP</h3>
+                    </div>
+                    <div class="tech-badges">
+                        <span class="tech-badge azure">Azure</span>
+                        <span class="tech-badge sap">SAP</span>
+                        <span class="tech-badge sharepoint">SharePoint</span>
+                        <span class="tech-badge m365">Microsoft 365</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us" id="pourquoi">
+        <div class="container">
+            <div class="why-us-header">
+                <h2 class="reveal">Pourquoi Officeshore ?</h2>
+                <p class="reveal">Le Shadow IT est partout. Nous sommes là pour l'éclairer.</p>
+            </div>
+
+            <div class="why-us-grid">
+                <div class="why-card reveal">
+                    <div class="why-icon">💼</div>
+                    <h3>20 ans d'expérience terrain</h3>
+                    <p>Du front-office énergie à la pharmacovigilance, nous avons développé et maintenu des outils critiques dans des environnements exigeants.</p>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-icon">👤</div>
+                    <h3>Un interlocuteur unique</h3>
+                    <p>Pas de comité de pilotage ou de reporting à rallonge. Vous parlez directement à celui qui met les mains dans le code.</p>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-icon">🎯</div>
+                    <h3>Pragmatisme</h3>
+                    <p>On maintient ce qui marche, on fait évoluer ce qui doit l'être, on migre quand c'est le bon moment — pas avant.</p>
+                </div>
+            </div>
+
+            <div class="stats reveal">
+                <div class="stat">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Années d'expérience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Clients grands comptes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Secteurs d'activité</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">48h</div>
+                    <div class="stat-label">Délai de réponse</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients">
+        <div class="container">
+            <h2>Ils nous ont fait confiance</h2>
+            <div class="clients-logos">
+                <span class="client-name">Dalkia</span>
+                <span class="client-name">EDF</span>
+                <span class="client-name">AXA XL</span>
+                <span class="client-name">Pierre Fabre</span>
+                <span class="client-name">Sony Pictures</span>
+                <span class="client-name">Coca-Cola</span>
+                <span class="client-name">Bosch</span>
+                <span class="client-name">Nestlé</span>
+                <span class="client-name">Reebok</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info reveal">
+                    <h2>Contactez-nous</h2>
+                    <p>Une macro qui plante ? Une base Access à reprendre ? Décrivez-nous votre situation, nous vous répondons sous 24-48h.</p>
+                    
+                    <ul class="contact-details">
+                        <li>
+                            <span class="icon">📧</span>
+                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5635393822373522163930303f3533253e3924337835393b">[email&#160;protected]</a></span>
+                        </li>
+                        <li>
+                            <span class="icon">📍</span>
+                            <span>Île-de-France — Intervention France entière en remote</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="entreprise">Entreprise</label>
+                            <input type="text" id="entreprise" name="entreprise">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sujet">Sujet *</label>
+                        <select id="sujet" name="sujet" required>
+                            <option value="">Sélectionnez un sujet</option>
+                            <option value="audit">Demande d'audit gratuit</option>
+                            <option value="allomacro">Dépannage urgent (AlloMacro)</option>
+                            <option value="maintenance">Maintenance / Exploitation</option>
+                            <option value="creation">Nouveau développement</option>
+                            <option value="migration">Migration Office</option>
+                            <option value="formation">Formation</option>
+                            <option value="web">Trajectoire Web</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Décrivez votre besoin..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Envoyer ma demande</button>
+                    <p class="form-note">Les informations recueillies sont destinées uniquement à répondre à votre demande. Consultez nos <a href="mentions-legales.html">mentions légales</a>.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg width="200" height="50" viewBox="0 0 380 80" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(5, 2)">
+                            <line x1="38" y1="2" x2="38" y2="10" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="16" y1="12" x2="22" y2="18" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="60" y1="12" x2="54" y2="18" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="8" y1="36" x2="16" y2="36" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="68" y1="36" x2="60" y2="36" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="38" cy="38" r="22" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                            <circle cx="38" cy="38" r="9" fill="#FFD700"/>
+                            <path d="M29,58 L29,68 Q29,72 32,72 L44,72 Q47,72 47,68 L47,58 Z" fill="#FFFFFF"/>
+                        </g>
+                        <text x="90" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="600" fill="#FFFFFF" letter-spacing="-1">Officeshore</text>
+                    </svg>
+                    <p>Enlight your Shadow IT — Maintenance, évolution et structuration de vos développements Excel/VBA et Access.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#pourquoi">Pourquoi nous</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1675797862777562567970707f7573657e7964733875797b">[email&#160;protected]</a></p>
+                    <p>Île-de-France</p>
+                    <p>France entière en remote</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Officeshore. Tous droits réservés.</p>
+                <a href="mentions-legales.html">Mentions légales</a>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission (placeholder - would need backend)
+		document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('/', {
+              method: 'POST',
+              headers: { 'Conten
