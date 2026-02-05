@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <!-- v3.2 - compact muted technologies -->
+    <!-- v3.3 - web3forms integration -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Officeshore — Enlight your Shadow IT</title>
     <meta name="description" content="Maintenance, évolution et structuration de vos développements Excel/VBA et Access. 20 ans d'expérience en environnements exigeants.">
@@ -1466,7 +1466,10 @@
                     </ul>
                 </div>
 
-                <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true">
+                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="97943350-6657-4e72-8b7c-c1b7c334d786">
+                    <input type="hidden" name="subject" value="Nouveau message depuis officeshore.com">
+                    <input type="hidden" name="redirect" value="https://officeshore.com?success=true">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nom">Nom *</label>
@@ -1604,10 +1607,18 @@
             });
         });
 
-        // Form submission (placeholder - would need backend)
-		document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            fetch('/', {
-              method: 'POST',
-              headers: { 'Conten
+        // Form submission Web3Forms
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('.form-submit');
+            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.disabled = true;
+        });
+
+        // Check for success message
+        if (window.location.search.includes('success=true')) {
+            alert('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 24-48h.');
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    </script>
+</body>
+</html>
