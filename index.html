@@ -710,32 +710,18 @@
             opacity: 0.6;
         }
 
-        .client-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .client-logo {
-            height: 40px;
-            width: auto;
-            max-width: 100px;
-            object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.7;
+        .client-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--blue-dark);
+            opacity: 0.8;
             transition: var(--transition);
         }
 
-        .client-logo:hover {
-            filter: grayscale(0%);
+        .client-name:hover {
             opacity: 1;
-        }
-
-        .client-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--blue-dark);
+            color: var(--gold);
         }
 
         /* Contact Section */
@@ -1454,42 +1440,15 @@
         <div class="container">
             <h2>Ils nous ont fait confiance</h2>
             <div class="clients-logos">
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/dalkia.fr/w/512/h/512" alt="Dalkia" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Dalkia</span>
-                </div>
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/edf.fr/w/512/h/512" alt="EDF" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">EDF</span>
-                </div>
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/axaxl.com/w/512/h/512" alt="AXA XL" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">AXA XL</span>
-                </div>
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/pierre-fabre.com/w/512/h/512" alt="Pierre Fabre" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Pierre Fabre</span>
-                </div>
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/sonypictures.com/w/512/h/512" alt="Sony Pictures" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Sony Pictures</span>
-                </div>
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/coca-cola.com/w/512/h/512" alt="Coca-Cola" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Coca-Cola</span>
-                </div>
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/bosch.com/w/512/h/512" alt="Bosch" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Bosch</span>
-                </div>
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/nestle.com/w/512/h/512" alt="Nestlé" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Nestlé</span>
-                </div>
-                <div class="client-item">
-                    <img src="https://cdn.brandfetch.io/reebok.com/w/512/h/512" alt="Reebok" class="client-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                    <span class="client-name" style="display:none;">Reebok</span>
-                </div>
+                <span class="client-name">Dalkia</span>
+                <span class="client-name">EDF</span>
+                <span class="client-name">AXA XL</span>
+                <span class="client-name">Pierre Fabre</span>
+                <span class="client-name">Sony Pictures</span>
+                <span class="client-name">Coca-Cola</span>
+                <span class="client-name">Bosch</span>
+                <span class="client-name">Nestlé</span>
+                <span class="client-name">Reebok</span>
             </div>
         </div>
     </section>
