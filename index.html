@@ -1607,7 +1607,36 @@
             });
         });
 
-        // Form submission with popup
+        // Custom popup function
+        function showPopup(message, isSuccess) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;';
+
+            const popup = document.createElement('div');
+            popup.style.cssText = 'background:white;padding:40px;border-radius:16px;text-align:center;max-width:400px;margin:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);';
+
+            const icon = document.createElement('div');
+            icon.style.cssText = 'font-size:48px;margin-bottom:20px;';
+            icon.textContent = isSuccess ? '✓' : '✗';
+            icon.style.color = isSuccess ? '#107C41' : '#CC2927';
+
+            const text = document.createElement('p');
+            text.style.cssText = 'font-size:1rem;color:#374151;margin-bottom:24px;line-height:1.5;';
+            text.textContent = message;
+
+            const btn = document.createElement('button');
+            btn.style.cssText = 'background:#1E3A5F;color:white;border:none;padding:12px 32px;border-radius:8px;font-size:0.9rem;cursor:pointer;font-weight:600;';
+            btn.textContent = 'OK';
+            btn.onclick = () => overlay.remove();
+
+            popup.appendChild(icon);
+            popup.appendChild(text);
+            popup.appendChild(btn);
+            overlay.appendChild(popup);
+            document.body.appendChild(overlay);
+        }
+
+        // Form submission with custom popup
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const form = this;
@@ -1623,16 +1652,16 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 24-48h.');
+                    showPopup('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 24-48h.', true);
                     form.reset();
                 } else {
-                    alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                    showPopup('Erreur lors de l\'envoi. Veuillez réessayer.', false);
                 }
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             })
             .catch(error => {
-                alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                showPopup('Erreur lors de l\'envoi. Veuillez réessayer.', false);
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             });
