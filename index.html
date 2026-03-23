@@ -1478,6 +1478,10 @@
                             <span><a href="mailto:contact@officeshore.com">contact@officeshore.com</a></span>
                         </li>
                         <li>
+                            <span class="icon">📞</span>
+                            <span><a href="tel:+33618782937">+33 6 18 78 29 37</a></span>
+                        </li>
+                        <li>
                             <span class="icon">📍</span>
                             <span>Île-de-France — Intervention France entière en remote</span>
                         </li>
@@ -1565,6 +1569,7 @@
                 <div class="footer-contact">
                     <h4>Contact</h4>
                     <p><a href="mailto:contact@officeshore.com">contact@officeshore.com</a></p>
+                    <p><a href="tel:+33618782937">+33 6 18 78 29 37</a></p>
                     <p>Île-de-France</p>
                     <p>France entière en remote</p>
                 </div>
@@ -1670,8 +1675,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showPopup('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 24-48h.', true);
-                    form.reset();
+                    window.location.href = 'merci.html';
                 } else {
                     showPopup('Erreur lors de l\'envoi. Veuillez réessayer.', false);
                 }
